@@ -1,13 +1,13 @@
-# 🍼 little-vdom
+# 🍼 little-vdom-ts
+
+Added TypeScript Declaration, more read-friendly
 
 > Forked from developit's [little-vdom](https://gist.github.com/developit/2038b141b31287faa663f410b6649a87) gist.
-
-**npm**: `npm i @luwes/little-vdom`  
-**cdn**: [unpkg.com/@luwes/little-vdom](https://unpkg.com/@luwes/little-vdom)  
+> Forked from luwes's [little-vdom](https://github.com/luwes/little-vdom)
 
 ---
 
-- 650B Virtual DOM
+- ~~650B~~ 824B(gzip) Virtual DOM
 - Components
 - State
 - Diffing
@@ -18,7 +18,7 @@
 
 Use reactive JSX with minimal overhead.
 
-## Usage ([Codepen](https://codepen.io/luwes/pen/ZEXPbzE?editors=0011))
+## Usage
 
 ```jsx
 /** @jsx h */
