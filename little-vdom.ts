@@ -39,7 +39,7 @@ type FCVNode = {
 };
 
 type TextVNode = {
-  _type: '';
+  _type: "";
   _props?: string;
   _state?: never;
   _patched?: never;
@@ -54,20 +54,20 @@ type DOMElement = (HTMLElement | Text) & {
   _vnode?: VNode;
 };
 
-const nilVNode = () => ({ _type: '' } as TextVNode);
+const nilVNode = () => ({ _type: "" } as TextVNode);
 function h(
   _type: ElementName,
   _props?: ElementProps,
   ...children: VNodeLike[]
 ): ElementVNode;
 function h(_type: FC, _props?: ElementProps, ...children: VNodeLike[]): FCVNode;
-function h(_type: '', _props?: string, ...children: VNodeLike[]): TextVNode;
+function h(_type: "", _props?: string, ...children: VNodeLike[]): TextVNode;
 function h(
-  _type: ElementName | FC | '',
+  _type: ElementName | FC | "",
   _props?: ElementProps | string,
   ...children: VNodeLike[]
 ) {
-  if (_type === '') {
+  if (_type === "") {
     return {
       _type,
       _props: _props as unknown as string,
@@ -76,7 +76,7 @@ function h(
     } as TextVNode;
   }
 
-  if (typeof _type === 'string') {
+  if (typeof _type === "string") {
     return {
       _type,
       _props: _props,
@@ -106,7 +106,6 @@ const render = (
   return diff(h(Fragment, {}, newVNode), dom, oldVNode);
 };
 
-
 const diff = (
   newVNodeLike: VNodeLike | VNodeLike[],
   dom: DOMElement,
@@ -121,10 +120,10 @@ const diff = (
   const newVNode: VNode =
     (newVNodeLike as VNode)._type !== undefined
       ? (newVNodeLike as VNode)
-      : h('', '' + newVNodeLike);
+      : h("", "" + newVNodeLike);
 
   // FCVNode
-  if (typeof newVNode._type === 'function') {
+  if (typeof newVNode._type === "function") {
     newVNode._state = oldVNode._state || {};
 
     // FC render props
@@ -173,13 +172,13 @@ const diff = (
       for (let name in newProps) {
         const value = newProps[name];
         // value cannot be string
-        if (name === 'style' && !value.trim) {
+        if (name === "style" && !value.trim) {
           for (const styleProp in value) {
-            (newDom as HTMLElement).style[styleProp] = value[styleProp];
+            (newDom as HTMLElement).style[styleProp as any] = value[styleProp];
           }
-        } else if (value != oldVNode?._props?.[name]) {
+        } else if (value != (oldVNode?._props as ElementProps)?.[name]) {
           if (name in newDom || (name = name.toLowerCase()) in newDom) {
-            newDom[name] = value;
+            (newDom as any)[name] = value;
           } else if (value != null) {
             (newDom as HTMLElement).setAttribute(name, value);
           } else {
@@ -223,7 +222,7 @@ const diffChildren = (
       // convert it into a text vnode.
       let nextNewChild: VNode;
       if ((child as VNode)._type === undefined) {
-        nextNewChild = h('', '' + child);
+        nextNewChild = h("", "" + child);
       } else {
         nextNewChild = child as VNode;
       }
