@@ -1,16 +1,15 @@
 {
-  "name": "@luwes/little-vdom",
-  "version": "0.3.4",
-  "description": "Fork from developit/little-vdom",
+  "name": "@wzhzzmzzy/little-vdom",
+  "version": "0.0.1",
+  "description": "Fork from luwes/little-vdom, added TypeScript support",
   "type": "module",
-  "main": "dist/little-vdom.js",
+  "main": "dist/little-vdom.mini.js",
   "scripts": {
     "lint": "eslint '*.{js,jsx}'",
-    "build": "npm run minify && npm run size",
-    "minify": "terser little-vdom.js -c -m toplevel=true --mangle-props regex=/^_/ -o dist/little-vdom.js",
-    "size": "echo \"gzip: $(cat dist/little-vdom.js | gzip -c9 | wc -c)\" && echo \"brotli: $(cat dist/little-vdom.js | brotli | wc -c)\" && echo ''",
-    "test": "web-test-runner **/*test.jsx --config test/web-test-runner.config.js",
-    "test:watch": "npm run test -- --watch"
+    "build": "node ./build.js && pnpm run size",
+    "size": "echo \"gzip: $(cat dist/little-vdom.mini.js | gzip -c9 | wc -c)\" && echo \"brotli: $(cat dist/little-vdom.mini.js | brotli | wc -c)\" && echo ''",
+    "test": "node ./build.js && web-test-runner **/*test.jsx --config test/web-test-runner.config.js",
+    "test:watch": "pnpm run test -- --watch"
   },
   "license": "MIT",
   "devDependencies": {
@@ -18,15 +17,11 @@
     "@web/dev-server": "^0.1.29",
     "@web/dev-server-esbuild": "^0.2.16",
     "@web/test-runner": "^0.13.25",
+    "esbuild": "^0.25.1",
     "eslint": "^8.7.0",
     "eslint-plugin-react": "^7.28.0",
     "prettier": "^2.5.1",
-    "terser": "^5.10.0"
-  },
-  "prettier": {
-    "tabWidth": 2,
-    "singleQuote": true,
-    "semi": true
+    "typescript": "^5.8.2"
   },
   "eslintConfig": {
     "env": {
