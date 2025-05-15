@@ -4,8 +4,6 @@ Added TypeScript Declaration, more read-friendly
 
 [👷 Explaination in Chinese](./EXPLAINATION-CN.md)
 
-> Forked from developit's [little-vdom](https://gist.github.com/developit/2038b141b31287faa663f410b6649a87) gist.
-> 
 > Forked from luwes's [little-vdom](https://github.com/luwes/little-vdom)
 
 ---
@@ -22,6 +20,8 @@ Added TypeScript Declaration, more read-friendly
 Use reactive JSX with minimal overhead.
 
 ## Usage
+
+[CodePen](https://codepen.io/wzhzzmzzy/pen/ByyMELJ)
 
 ```jsx
 /** @jsx h */
