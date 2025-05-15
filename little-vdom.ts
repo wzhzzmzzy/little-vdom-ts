@@ -80,7 +80,7 @@ function h(
     return {
       _type,
       _props: _props,
-      _children: children.filter((child) => !!child),
+      _children: children.filter((child) => child !== null && child !== ""),
       key: (_props as ElementProps)?.key,
     } as ElementVNode;
   }
@@ -238,7 +238,7 @@ const diffChildren = (
             (oldChild as any).key === (nextNewChild as any).key;
 
           if (isMatchingChild) {
-            // If child index matches old child index
+            // If child index same as old child index, don't need rerender, skip this node
             if (childIndex === index) {
               index = -1;
             }

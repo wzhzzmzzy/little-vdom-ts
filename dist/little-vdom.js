@@ -13,7 +13,7 @@ function h(_type, _props, ...children) {
     return {
       _type,
       _props,
-      _children: children.filter((child) => !!child),
+      _children: children.filter((child) => child !== null && child !== ""),
       key: _props?.key
     };
   }
