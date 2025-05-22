@@ -24,18 +24,20 @@ Use reactive JSX with minimal overhead.
 [CodePen](https://codepen.io/wzhzzmzzy/pen/ByyMELJ)
 
 ```jsx
+import { render, update, h, Fragment } from "./dist/little-vdom";
+
 /** @jsx h */
 
 // Components get passed (props, state, setState)
 function Counter(props, { count = 0 }, update) {
   const increment = () => update({ count: ++count });
-  return <button onclick={increment}>{count}</button>
+  return <button onclick={increment}>{count}</button>;
 }
 
 function Since({ time }, state, update) {
   setTimeout(update, 1000); // update every second
-  const ago = (Date.now() - time) / 1000 | 0;
-  return <time>{ago}s ago</time>
+  const ago = ((Date.now() - time) / 1000) | 0;
+  return <time>{ago}s ago</time>;
 }
 
 render(
